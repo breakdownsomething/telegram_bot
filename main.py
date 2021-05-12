@@ -3,9 +3,11 @@ import telebot
 import psycopg2
 from datetime import datetime
 from urllib.parse import urlparse
+import socket
 
 states = dict()
 token = os.getenv('TOKEN')
+soc_port = int(os.getenv('PORT'))
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 result = urlparse(DATABASE_URL)
@@ -116,4 +118,10 @@ def handle_message(message):
     bot.send_message(chat_id=message.chat.id, text=reply)
 
 
+sock = socket.socket()
+sock.bind(('', soc_port))
+sock.listen(1)
+
 bot.polling()
+
+
