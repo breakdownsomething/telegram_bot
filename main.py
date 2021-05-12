@@ -28,12 +28,6 @@ except (Exception, psycopg2.DatabaseError) as error:
     print(error)
 
 
-# finally:
-#    if conn is not None:
-#        conn.close()
-#        print('Database connection closed.')
-
-
 def get_default_reply(message):
     return 'Неизвестная команда, пошлите /start для начала работы'
 
